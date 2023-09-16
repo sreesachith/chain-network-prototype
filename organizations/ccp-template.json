@@ -1,0 +1,70 @@
+{
+  "name": "prototype-network-${ORG}",
+  "version": "1.0.0",
+  "client": {
+    "organization": "${ORG}",
+    "connection": {
+      "timeout": {
+        "peer": {
+          "endorser": "300"
+        }
+      }
+    }
+  },
+  "organizations": {
+    "${ORG}": {
+      "mspid": "${ORG}MSP",
+      "peers": ["peer0.${ORG}.isfcr.com",
+                "peer1.${ORG}.isfcr.com",
+                "peer2.${ORG}.isfcr.com",
+                "peer3.${ORG}.isfcr.com"
+    
+      ],
+      "certificateAuthorities": ["ca.${ORG}.isfcr.com"]
+    }
+  },
+  "peers": {
+    "peer0.${ORG}.isfcr.com": {
+      "url": "grpcs://localhost:${P0PORT}",
+      "tlsCACerts": {
+        "pem": "${PEERPEM}"
+      },
+      "grpcOptions": {
+        "ssl-target-name-override": "peer0.${ORG}.isfcr.com",
+        "hostnameOverride": "peer0.${ORG}.isfcr.com"
+      }
+    },
+    "peer1.${ORG}.isfcr.com": {
+      "url": "grpcs://localhost:${P1PORT}",
+      "tlsCACerts": {
+        "pem": "${PEERPEM}"
+      },
+      "grpcOptions": {
+        "ssl-target-name-override": "peer1.${ORG}.isfcr.com",
+        "hostnameOverride": "peer1.${ORG}.isfcr.com"
+      }
+    },
+    "peer2.${ORG}.isfcr.com": {
+      "url": "grpcs://localhost:${P2PORT}",
+      "tlsCACerts": {
+        "pem": "${PEERPEM}"
+      },
+      "grpcOptions": {
+        "ssl-target-name-override": "peer2.${ORG}.isfcr.com",
+        "hostnameOverride": "peer2.${ORG}.isfcr.com"
+      }
+    }
+  },
+  "certificateAuthorities": {
+    "ca.${ORG}.isfcr.com": {
+      "url": "https://localhost:${CAPORT}",
+      "caName": "ca-${ORG}",
+      "tlsCACerts": {
+        "pem": ["${CAPEM}"]
+      },
+      "httpOptions": {
+        "verify": false
+      }
+    }
+  }
+}
